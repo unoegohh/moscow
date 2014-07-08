@@ -1,0 +1,72 @@
+unoegohh_admin_homepage:
+    path:     /
+    defaults: { _controller: UnoegohhAdminBundle:Default:index }
+
+# static pages
+
+unoegohh_admin_static_page:
+    path:     /static_page
+    defaults: { _controller: UnoegohhAdminBundle:StaticPage:index }
+
+unoegohh_admin_static_page_create:
+    path:     /static_page/create
+    defaults: { _controller: UnoegohhAdminBundle:StaticPage:create }
+
+unoegohh_admin_static_page_edit:
+    path:     /static_page/edit/{id}
+    defaults: { _controller: UnoegohhAdminBundle:StaticPage:edit }
+
+unoegohh_admin_static_page_remove:
+    path:     /static_page/remove/{id}
+    defaults: { _controller: UnoegohhAdminBundle:StaticPage:remove }
+
+unoegohh_admin_static_page_remove_ok:
+    path:     /static_page/remove/{id}/ok
+    defaults: { _controller: UnoegohhAdminBundle:StaticPage:removeOk }
+
+unoegohh_admin_static_page_image_upload:
+    path:     /static_page/upload
+    defaults: { _controller: UnoegohhAdminBundle:StaticPage:imageUpload }
+
+#menu
+
+unoegohh_admin_menu:
+    path:     /menu
+    defaults: { _controller: UnoegohhAdminBundle:MenuItem:index }
+
+unoegohh_admin_menu_create:
+    path:     /menu/create
+    defaults: { _controller: UnoegohhAdminBundle:MenuItem:create }
+
+unoegohh_admin_menu_edit:
+    path:     /menu/edit/{id}
+    defaults: { _controller: UnoegohhAdminBundle:MenuItem:edit }
+
+unoegohh_admin_menu_remove:
+    path:     /menu/remove/{id}
+    defaults: { _controller: UnoegohhAdminBundle:MenuItem:remove }
+
+unoegohh_admin_menu_remove_ok:
+    path:     /menu/remove/{id}/ok
+    defaults: { _controller: UnoegohhAdminBundle:MenuItem:removeOk }
+
+
+unoegohh_admin_posts:
+    path:     /posts
+    defaults: { _controller: UnoegohhAdminBundle:Post:index }
+
+unoegohh_admin_posts_create:
+    path:     /posts/create
+    defaults: { _controller: UnoegohhAdminBundle:Post:create }
+
+unoegohh_admin_posts_edit:
+    path:     /posts/edit/{id}
+    defaults: { _controller: UnoegohhAdminBundle:Post:edit }
+
+unoegohh_admin_posts_remove:
+    path:     /posts/remove/{id}
+    defaults: { _controller: UnoegohhAdminBundle:Post:remove }
+
+unoegohh_admin_posts_remove_ok:
+    path:     /posts/remove/{id}/ok
+    defaults: { _controller: UnoegohhAdminBundle:Post:removeOk }

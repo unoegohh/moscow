@@ -1,0 +1,92 @@
+body {
+    padding: 0;
+    font-family: "Lucida Grande" , sans-serif;
+    margin: 0;
+}
+#banner {
+    height:220px;
+    background: url("/images/header.png") center center;
+    margin: 0 0 38px 0;
+
+}
+#container {
+    margin: 0 auto;
+}
+#container .item{
+    margin-bottom: 18px;
+    font-size: 13px;
+    width: 340px;
+    overflow: hidden;
+
+    background: #eeeeee;
+}
+#container .item .item_text{
+    padding: 1px 14px ;
+    background: #eeeeee;
+    z-index: 10;
+    position: relative;
+}
+#container .item img{
+    display: block;
+    width: 340px;
+}
+.reblog {
+    background-color:rgba(0,0,0,0.7);
+    position:absolute;
+    color:#FFFFFF;
+    text-align:center;
+    text-transform:uppercase;
+
+
+    width:340px;
+
+
+
+    font-size:20px;
+    padding:15px 0px;
+
+
+    line-height:10px;
+    opacity:0;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    transition: all 0.5s ease;}
+.item:hover .reblog {
+
+    margin-top:-40px;
+
+
+    opacity:1;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+.item .info {
+    text-align: center;
+    font-size: 14px;
+    position:absolute;
+    top:0;
+    left:0;
+    opacity:0;
+    color:white;
+
+    width:320px;
+
+
+    margin-top:-50px;
+    height:auto;
+    padding:8px 10px;
+
+    background-color:rgba(0,0,0,0.7);
+    z-index:998;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+.item:hover .info{
+    opacity:1;
+    margin-top:0;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}

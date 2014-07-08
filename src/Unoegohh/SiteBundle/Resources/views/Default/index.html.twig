@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<title>Humans of moscow</title>
+<script src="/admin/js/vend/jquery-1.11.0.min.js"></script>
+<script src="/js/mansonry.js"></script>
+<script src="/js/lightbox.min.js"></script>
+<link rel="stylesheet" href="/css/lightbox.css"/>
+{#<link rel="stylesheet" href="/css/screen.css"/>#}
+<link rel="stylesheet" href="/index.css"/>
+<script>
+    $(function(){
+        var $container = $('#container');
+
+        $container.imagesLoaded( function(){
+            $container.masonry({
+                itemSelector : '.item',
+                columnWidth: 340,
+                "gutter": 18,
+                "isFitWidth": true
+            });
+        });
+    })
+</script>
+<body>
+    <header>
+        <div id="language">
+            <a href="">RU</a> |
+            <a href="">EN</a>
+        </div>
+        <div id="social">
+            <a href="#" class="social_header_icon"></a>
+            <a href="#" class="social_header_icon"></a>
+            <a href="#" class="social_header_icon"></a>
+            <a href="#" class="social_header_icon"></a>
+        </div>
+        <div id="menu">
+
+        </div>
+    </header>
+    <div id="banner"></div>
+    <div id="container">
+        {% for post in posts %}
+            <div class="item">
+                <div class="info">
+                    {{ post.date |date('d.m.y') }}
+                </div>
+                <a href="{{ post.bigPhoto }}" data-lightbox="image-1" data-title="{{ post.descr | raw }}">
+                    <img src="{{ post.photo }}" alt="" width="340px"/>
+                    <a href="#">
+                        <div class="reblog">Reblog This</div>
+                    </a>
+                </a>
+                <div class="item_text">{{ post.descr | raw }}</div>
+            </div>
+        {% endfor %}
+    </div>
+</body>

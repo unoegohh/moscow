@@ -1,0 +1,9 @@
+unoegohh_site_homepage:
+    path:     /{_locale}
+    defaults: { _controller: UnoegohhSiteBundle:Default:index }
+    requirements:
+        _locale: ru|en
+
+unoegohh_site_start:
+    path:     /
+    defaults: { _controller: UnoegohhSiteBundle:Default:redirect }
