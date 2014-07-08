@@ -21,36 +21,59 @@
     })
 </script>
 <body>
-    <header>
-        <div id="language">
-            <a href="">RU</a> |
-            <a href="">EN</a>
-        </div>
-        <div id="social">
-            <a href="#" class="social_header_icon"></a>
-            <a href="#" class="social_header_icon"></a>
-            <a href="#" class="social_header_icon"></a>
-            <a href="#" class="social_header_icon"></a>
-        </div>
-        <div id="menu">
-
-        </div>
-    </header>
-    <div id="banner"></div>
-    <div id="container">
-        {% for post in posts %}
-            <div class="item">
-                <div class="info">
-                    {{ post.date |date('d.m.y') }}
-                </div>
-                <a href="{{ post.bigPhoto }}" data-lightbox="image-1" data-title="{{ post.descr | raw }}">
-                    <img src="{{ post.photo }}" alt="" width="340px"/>
-                    <a href="#">
-                        <div class="reblog">Reblog This</div>
-                    </a>
-                </a>
-                <div class="item_text">{{ post.descr | raw }}</div>
+    <div id="wrapper">
+        <header>
+            <div id="language">
+                <a href="">RU</a> |
+                <a href="">EN</a>
             </div>
-        {% endfor %}
+            <div id="social">
+                <a href="#" class="social_header_icon"><i class="header_vk icon"></i></a>
+                <a href="#" class="social_header_icon"><i class="icon header_thumb"></i></a>
+                <a href="#" class="social_header_icon"><i class="icon header_insta"></i></a>
+                <a href="#" class="social_header_icon"><i class="icon header_twitter"></i></a>
+            </div>
+            <div id="facebook">
+                <h3>Присоединяйся к нам</h3>
+                <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-width="300" data-layout="standard" data-action="like" data-show-faces="true" data-share="false"></div>
+            </div>
+        </header>
+        <div id="banner"></div>
+        <nav>
+            <ul>
+                <li><a href="#">О проекте</a></li>
+                <li><a href="#"> Архив</a></li>
+                <li><a href="#">Сми</a></li>
+                <li><a href="#">Контакты</a></li>
+            </ul>
+        </nav>
+        <div id="container">
+            {% for post in posts %}
+                <div class="item">
+                    <a href="{{ post.bigPhoto }}" data-lightbox="image-1" data-title="{{ post.descr | raw }}">
+                        <img src="{{ post.photo }}" alt="" width="340px"/>
+
+                    </a>
+                    <div class="blog_helper">
+                        {{ post.date |date('d.m.y') }}
+                        <div class="blog_icons">
+                            <a href="#"><i class="icon blog_flicr"></i></a>
+                            <a href="#"><i class="icon blog_vk"></i></a>
+                            <a href="#"><i class="icon blog_tumblr"></i></a>
+                            <a href="#"><i class="icon blog_twitter"></i></a>
+                        </div>
+                    </div>
+                    <div class="item_text">{{ post.descr | raw }}</div>
+                </div>
+            {% endfor %}
+        </div>
     </div>
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/ru_RU/sdk.js#xfbml=1&appId=418411044868056&version=v2.0";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
 </body>

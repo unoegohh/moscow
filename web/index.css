@@ -2,12 +2,12 @@ body {
     padding: 0;
     font-family: "Lucida Grande" , sans-serif;
     margin: 0;
+    background:  url("/images/pattern.jpg");
 }
 #banner {
-    height:220px;
+    height:241px;
     background: url("/images/header.png") center center;
-    margin: 0 0 38px 0;
-
+    margin: 0 0 20px 0;
 }
 #container {
     margin: 0 auto;
@@ -30,28 +30,21 @@ body {
     display: block;
     width: 340px;
 }
-.reblog {
-    background-color:rgba(0,0,0,0.7);
+.blog_helper {
+    background-color:rgba(0,0,0,0.3);
     position:absolute;
     color:#FFFFFF;
-    text-align:center;
     text-transform:uppercase;
+    padding: 15px;
 
-
-    width:340px;
-
-
-
-    font-size:20px;
-    padding:15px 0px;
-
-
-    line-height:10px;
+    width:310px;
+    font-size:14px;
+    line-height:14px;
     opacity:0;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     transition: all 0.5s ease;}
-.item:hover .reblog {
+.item:hover .blog_helper {
 
     margin-top:-40px;
 
@@ -60,6 +53,38 @@ body {
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     transition: all 0.5s ease;
+}
+.blog_helper .blog_icons {
+    float: right;
+    text-align: right;
+}
+.blog_helper .blog_icons a {
+    display: inline-block;
+    margin: 0 5px 0 0;
+}
+.blog_helper .blog_icons .blog_flicr {
+    width: 8px;
+    height: 17px;
+    background-position: -60px 0px;
+    top: -3px;
+}
+.blog_helper .blog_icons .blog_vk {
+    width: 19px;
+    height: 11px;
+    background-position: -41px 0px;
+    top: -4px;
+}
+.blog_helper .blog_icons .blog_tumblr {
+    width: 10px;
+    height: 17px;
+    background-position: -31px 0px;
+    top: -2px;
+}
+.blog_helper .blog_icons .blog_twitter {
+    width: 16px;
+    height: 13px;
+    background-position: 0px 0px;
+    top: -4px;
 }
 .item .info {
     text-align: center;
@@ -89,4 +114,114 @@ body {
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     transition: all 0.5s ease;
+}
+header {
+    height: 118px;
+    box-sizing: border-box;
+    padding: 0 94px;
+    margin: 0 auto;
+    line-height: 118px;
+}
+header #language {
+    width: 100px;
+    float: right;
+    text-align: right;
+}
+header #language a{
+    font-size: 14px;
+    text-decoration: none;
+    color: black;
+}
+header #social a{
+    text-decoration: none;
+    display: inline-block;
+    width: 32px;
+    background: black;
+    text-align: center;
+    height: 32px;
+    border-radius: 16px;
+    position: relative;
+    top: 10px;
+    line-height: 52px;
+}
+header #social{
+    width: 340px;
+    float: left;
+}
+header #social a:hover{
+    background: #ff6b00;
+}
+#wrapper {
+    background: white;
+    width: 1250px;
+    margin: 0 auto;
+    -webkit-box-shadow: 0px 0px 16px 0px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow:    0px 0px 16px 0px rgba(50, 50, 50, 0.75);
+    box-shadow:         0px 0px 16px 0px rgba(50, 50, 50, 0.75);
+}
+nav{
+    text-align: center;
+    height: 60px;
+    line-height: 60px;
+    margin-bottom: 20px;
+}
+nav ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+nav ul li {
+    display: inline-block;
+    font-size: 14px;
+}
+nav ul li a{
+    text-decoration: none;
+    text-transform: uppercase;
+    color: black;
+    padding: 0 10px;
+    margin: 14px 0;
+}
+nav ul li a:hover{
+    text-decoration: none;
+    color: #ff6b00;
+}
+#facebook {
+    height: 118px;
+    width: 300px;
+    line-height: 18px;
+    padding:  0 0 0 100px;
+    float: left;
+    background: url("/images/афсуищщл%20ифслпкщгтв.png") no-repeat left top;
+}
+#facebook h3{
+    text-transform: uppercase;
+}
+.icon {
+    background: url("/images/sprite.png") no-repeat center center;
+    display: inline-block;
+    position: relative;
+}
+.header_vk {
+    width: 19px;
+    height: 11px;
+    background-position: -41px 0px;
+    top: -9px;
+}
+.header_thumb {
+    width: 10px;
+    height: 17px;
+    background-position: -31px 0px;
+    top: -7px;
+}
+.header_insta {
+    width: 15px;
+    height: 15px;
+    background-position: -16px 0px;
+    top: -8px;
+}
+.header_twitter {
+    width: 16px;
+    height: 13px;
+    background-position: 0px 0px;
+    top: -9px;
 }
