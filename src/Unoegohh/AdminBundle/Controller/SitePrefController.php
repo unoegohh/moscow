@@ -6,6 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Config\Definition\Exception\Exception;
 use Unoegohh\AdminBundle\Form\SitePrefForm;
 use Symfony\Component\HttpFoundation\Request;
+use Unoegohh\EntitiesBundle\Entity\SitePref;
+use Tumblr\API;
 
 class SitePrefController extends Controller
 {

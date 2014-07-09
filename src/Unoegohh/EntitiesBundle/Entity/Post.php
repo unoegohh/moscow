@@ -245,7 +245,7 @@ class Post
 
 
 
-    public function convertFromTumblr(\StdClass $post){
+    public function convertFromTumblr(\StdClass $post , SitePref $pref){
 
         $this->setName($post->blog_name);
         $this->setPhoto($post->photos[0]->alt_sizes[2]->url);
@@ -256,9 +256,9 @@ class Post
         $this->setTId($post->id);
         $this->setTUrl($post->short_url);
 
-        $postDescrs = explode("#humasofmoscow#",$post->caption);
-        $this->setDescr($postDescrs[0]);
-        $this->setDescrEng($postDescrs[1]);
+        $postDescrs = explode($pref->getTumblrDelimeter(),$post->caption);
+        $this->setDescr($postDescrs[1]);
+        $this->setDescrEng($postDescrs[0]);
 
         return true;
 

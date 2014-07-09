@@ -51,6 +51,18 @@ unoegohh_admin_menu_remove_ok:
     defaults: { _controller: UnoegohhAdminBundle:MenuItem:removeOk }
 
 
+unoegohh_admin_site_pref:
+    path:     /site_pref
+    defaults: { _controller: UnoegohhAdminBundle:SitePref:index }
+
+unoegohh_admin_site_pref_api:
+    path:     /site_pref/api
+    defaults: { _controller: UnoegohhAdminBundle:SitePref:getAuth }
+
+unoegohh_admin_site_pref_api_data:
+    path:     /site_pref/apiData
+    defaults: { _controller: UnoegohhAdminBundle:SitePref:getAuthData }
+
 unoegohh_admin_posts:
     path:     /posts
     defaults: { _controller: UnoegohhAdminBundle:Post:index }

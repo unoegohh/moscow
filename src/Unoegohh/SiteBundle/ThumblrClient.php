@@ -2,11 +2,12 @@
 
 namespace Unoegohh\SiteBundle;
 use Tumblr\API;
+use Unoegohh\EntitiesBundle\Entity\SitePref;
 
- class ThumblrClient
+class ThumblrClient
 {
-    public function __construct(){
-        $client = new API\Client('ONPKUuYNo7QYUle7A1mfMDEhfk5HIXFGsb069DefRPGAs4Apem', 'OOp9g0SPzseek2ZkCo5SkR7370qCcttEhgA0JOUjkqdHp0ferd', 'kFeMm5WDiDy9goWskC4kfBfhYioOf7To5aqhwZnp02p7sxe8cF', '0CY0wB004uL62jxNQWk7nudHVkVlLd9ELrC1Fn8XDtU6VtKF3C');
+    public function __construct(SitePref $pref){
+        $client = new API\Client($pref->getTumblrToken(),$pref->getTumblrSecret(), $pref->getTumblrAToken(), $pref->getTumblrASecret());
 
         $this->client = $client;
     }

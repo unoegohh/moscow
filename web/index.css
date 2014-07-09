@@ -10,7 +10,7 @@ body {
     margin: 0 0 20px 0;
 }
 #container {
-    margin: 0 auto;
+    padding: 0 94px;
 }
 #container .item{
     margin-bottom: 18px;
@@ -131,6 +131,9 @@ header #language a{
     font-size: 14px;
     text-decoration: none;
     color: black;
+}
+header #language a:hover{
+    color: #ff6b00;
 }
 header #social a{
     text-decoration: none;

@@ -55,12 +55,15 @@ class PostController extends Controller
             $params = array("source" => $data['file'], "type" => "photo", 'caption' => $data['descr'] . "#humasofmoscow#" . $data['descr_eng']);
            // var_dump($params);die;
 
-            $clientClass = new ThumblrClient();
+            $prefRepo = $em->getRepository('UnoegohhEntitiesBundle:SitePref');
+
+            $pref = $prefRepo->findOneBy(array(), array(), 1);
+            $clientClass = new ThumblrClient($pref);
             $client = $clientClass->GetClient();
-            $responce = $client->createPost('unoegohh', $params );
-            $post = $client->getBlogPosts('unoegohh', array('id' =>$responce->id ));
+            $responce = $client->createPost($pref->getTumblrBlogName(), $params );
+            $post = $client->getBlogPosts($pref->getTumblrBlogName(), array('id' =>$responce->id ));
             $item = new Post();
-            $item->convertFromTumblr($post->posts[0]);
+            $item->convertFromTumblr($post->posts[0], $pref);
             $em->persist($item);
             $em->flush();
             $this->get('session')->getFlashBag()->add(
@@ -93,19 +96,22 @@ class PostController extends Controller
         $form->handleRequest($request);
 
         if($form->isValid()){$data = $form->getData();
-            $params = array("type" => "photo", 'caption' => $data['descr'] . "#humasofmoscow#" . $data['descr_eng']);
+            $prefRepo = $em->getRepository('UnoegohhEntitiesBundle:SitePref');
+
+            $pref = $prefRepo->findOneBy(array(), array(), 1);
+            $params = array("type" => "photo", 'caption' => $data['descr'] . $pref->getTumblrDelimeter() . $data['descr_eng']);
             // var_dump($params);die;
 
             if($id->getPhoto() != $data['file']){
                 $params['source'] = $data['file'];
             }
 
-            $clientClass = new ThumblrClient();
+            $clientClass = new ThumblrClient($pref);
             $client = $clientClass->GetClient();
-            $responce = $client->editPost('unoegohh',$id->getTId(), $params );
+            $responce = $client->editPost($pref->getTumblrBlogName(),$id->getTId(), $params );
             //var_dump($responce);die;
-            $post = $client->getBlogPosts('unoegohh', array('id' =>$responce->id ));
-            $id->convertFromTumblr($post->posts[0]);
+            $post = $client->getBlogPosts($pref->getTumblrBlogName(), array('id' =>$responce->id ));
+            $id->convertFromTumblr($post->posts[0], $pref);
             $em->persist($id);
             $em->flush();
             $this->get('session')->getFlashBag()->add(
@@ -132,9 +138,12 @@ class PostController extends Controller
          */
         $em = $this->container->get('doctrine')->getManager();
 
-        $clientClass = new ThumblrClient();
+        $prefRepo = $em->getRepository('UnoegohhEntitiesBundle:SitePref');
+
+        $pref = $prefRepo->findOneBy(array(), array(), 1);
+        $clientClass = new ThumblrClient($pref);
         $client = $clientClass->GetClient();
-        $resu = $client->deletePost('unoegohh', $id->getTId(),$id->getReblog());
+        $resu = $client->deletePost($pref->getTumblrBlogName(), $id->getTId(),$id->getReblog());
         $em->remove($id);
         $em->flush();
         $this->get('session')->getFlashBag()->add(

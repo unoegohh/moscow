@@ -21,15 +21,18 @@ class GetAllPostsCommand extends ContainerAwareCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
 
-        $clientClass = new ThumblrClient();
-        $client = $clientClass->GetClient();
-
-        $posts = $client->getBlogPosts('unoegohh', $options = null);
-
         /*
          * @var $em EntityManager
          */
         $em = $this->getContainer()->get('doctrine')->getManager();
+        $prfRepo = $em->getRepository('UnoegohhEntitiesBundle:SitePref');
+
+        $pref = $prfRepo->findOneBy(array(), array(), 1);
+        $clientClass = new ThumblrClient($pref);
+        $client = $clientClass->GetClient();
+
+        $posts = $client->getBlogPosts($pref->getTumblrBlogName(), $options = null);
+
 
         $prefRepo = $em->getRepository('UnoegohhEntitiesBundle:Post');
         foreach($posts->posts as $post){
@@ -44,9 +47,9 @@ class GetAllPostsCommand extends ContainerAwareCommand
                 $item->setTId($post->id);
                 $item->setTUrl($post->short_url);
 
-                $postDescrs = explode("#humasofmoscow#",$post->caption);
-                $item->setDescr($postDescrs[0]);
-                $item->setDescrEng($postDescrs[1]);
+                $postDescrs = explode($pref->getTumblrDelimeter(),$post->caption);
+                $item->setDescr($postDescrs[1]);
+                $item->setDescrEng($postDescrs[0]);
                 $postItem = $prefRepo->findOneBy(array('tId' => $post->id));
                 if(!$postItem){
                     $output->writeln('Added item with id ' . $item->getTId());

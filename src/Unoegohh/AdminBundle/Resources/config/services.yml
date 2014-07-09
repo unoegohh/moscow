@@ -1,10 +1,17 @@
 parameters:
 #    unoegohh_admin.example.class: Unoegohh\AdminBundle\Example
+    unoegohh_shop.site_pref.class: Unoegohh\AdminBundle\Service\SitePrefService
+
 
 services:
-   unoegohh.admin_bundle.imgur_upload:
+    unoegohh.admin_bundle.imgur_upload:
       class: Unoegohh\AdminBundle\Service\ImgurUploadService
       arguments:
         entityManager: "@doctrine.orm.entity_manager"
         container: "@service_container"
         imgur_key: %imgur_key%
+    unoegohh_site.pref.twig:
+        class: %unoegohh_shop.site_pref.class%
+        arguments: [@doctrine.orm.entity_manager]
+        tags:
+          - { name: twig.extension }

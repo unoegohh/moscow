@@ -11,10 +11,18 @@ class SitePrefForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('phone')
-            ->add('email')
-            ->add('address')
-            ->add('sign')
+            ->add('facebookUrl')
+            ->add('tumblrToken')
+            ->add('tumblrSecret')
+            ->add('tumblrAToken')
+            ->add('tumblrASecret')
+            ->add('tumblrBlogName')
+            ->add('vkLink')
+            ->add('tumblrLink')
+            ->add('facebookLink')
+            ->add('twitterLink')
+            ->add('instaLink')
+            ->add('tumblrDelimeter')
         ;
     }
 

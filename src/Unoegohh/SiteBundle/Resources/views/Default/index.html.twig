@@ -14,8 +14,8 @@
             $container.masonry({
                 itemSelector : '.item',
                 columnWidth: 340,
-                "gutter": 18,
-                "isFitWidth": true
+                "gutter": 18
+                //"isFitWidth": true
             });
         });
     })
@@ -24,14 +24,22 @@
     <div id="wrapper">
         <header>
             <div id="language">
-                <a href="">RU</a> |
-                <a href="">EN</a>
+                <a href="/ru">RU</a> |
+                <a href="/en">EN</a>
             </div>
             <div id="social">
-                <a href="#" class="social_header_icon"><i class="header_vk icon"></i></a>
-                <a href="#" class="social_header_icon"><i class="icon header_thumb"></i></a>
-                <a href="#" class="social_header_icon"><i class="icon header_insta"></i></a>
-                <a href="#" class="social_header_icon"><i class="icon header_twitter"></i></a>
+                {% if pref().vkLink %}
+                    <a href="{{ pref().vkLink }}" class="social_header_icon"><i class="header_vk icon"></i></a>
+                {% endif %}
+                {% if pref().tumblrLink %}
+                    <a href="{{ pref().tumblrLink }}" class="social_header_icon"><i class="header_thumb icon"></i></a>
+                {% endif %}
+                {% if pref().instaLink %}
+                    <a href="{{ pref().instaLink }}" class="social_header_icon"><i class="header_insta icon"></i></a>
+                {% endif %}
+                {% if pref().twitterLink %}
+                    <a href="{{ pref().twitterLink }}" class="social_header_icon"><i class="header_twitter icon"></i></a>
+                {% endif %}
             </div>
             <div id="facebook">
                 <h3>Присоединяйся к нам</h3>
@@ -50,7 +58,12 @@
         <div id="container">
             {% for post in posts %}
                 <div class="item">
-                    <a href="{{ post.bigPhoto }}" data-lightbox="image-1" data-title="{{ post.descr | raw }}">
+                    <a href="{{ post.bigPhoto }}" data-lightbox="image-1" data-title="
+                        {% if _locale == "ru" %}
+                            {{ post.descr | raw }}
+                        {% else %}
+                            {{ post.descrEng | raw }}
+                        {% endif %}">
                         <img src="{{ post.photo }}" alt="" width="340px"/>
 
                     </a>
@@ -63,17 +76,24 @@
                             <a href="#"><i class="icon blog_twitter"></i></a>
                         </div>
                     </div>
-                    <div class="item_text">{{ post.descr | raw }}</div>
+                    <div class="item_text">
+                        {% if _locale == "ru" %}
+                            {{ post.descr | raw }}
+                        {% else %}
+                            {{ post.descrEng | raw }}
+                        {% endif %}
+                    </div>
                 </div>
             {% endfor %}
         </div>
     </div>
     <div id="fb-root"></div>
+
     <script>(function(d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];
             if (d.getElementById(id)) return;
             js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/ru_RU/sdk.js#xfbml=1&appId=418411044868056&version=v2.0";
+            js.src = "{% if pref().facebookUrl %}{{  pref().facebookUrl | raw }}{% endif %}";
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));</script>
 </body>
