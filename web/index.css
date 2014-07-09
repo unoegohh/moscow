@@ -190,11 +190,18 @@ nav ul li a:hover{
 }
 #facebook {
     height: 118px;
-    width: 300px;
+    width: 400px;
     line-height: 18px;
-    padding:  0 0 0 100px;
+    padding:  0 0 0 20px;
     float: left;
-    background: url("/images/афсуищщл%20ифслпкщгтв.png") no-repeat left top;
+}
+#facebook #face_header_link{
+    display: block;
+    height: 81px;
+    width: 80px;
+    float: left;
+    background: black url("/images/афсуищщл%20ифслпкщгтв.png") no-repeat left top;
+    margin: 0 20px 0 0;
 }
 #facebook h3{
     text-transform: uppercase;

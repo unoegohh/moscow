@@ -52,7 +52,7 @@ class PostController extends Controller
 
 
             $data = $form->getData();
-            $params = array("source" => $data['file'], "type" => "photo", 'caption' => $data['descr'] . "#humasofmoscow#" . $data['descr_eng']);
+            $params = array("source" => $data['file'], "type" => "photo", 'caption' => $data['descr_eng'] . "#humasofmoscow#" . $data['descr']);
            // var_dump($params);die;
 
             $prefRepo = $em->getRepository('UnoegohhEntitiesBundle:SitePref');
@@ -99,7 +99,7 @@ class PostController extends Controller
             $prefRepo = $em->getRepository('UnoegohhEntitiesBundle:SitePref');
 
             $pref = $prefRepo->findOneBy(array(), array(), 1);
-            $params = array("type" => "photo", 'caption' => $data['descr'] . $pref->getTumblrDelimeter() . $data['descr_eng']);
+            $params = array("type" => "photo", 'caption' => $data['descr_eng'] . $pref->getTumblrDelimeter() . $data['descr']);
             // var_dump($params);die;
 
             if($id->getPhoto() != $data['file']){

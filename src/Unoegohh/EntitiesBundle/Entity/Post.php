@@ -58,12 +58,12 @@ class Post
     protected $tUrl;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=10000)
      */
     protected $descr;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=10000)
      */
     protected $descr_eng;
 
