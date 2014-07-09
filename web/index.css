@@ -190,7 +190,7 @@ nav ul li a:hover{
 }
 #facebook {
     height: 118px;
-    width: 400px;
+    width: 450px;
     line-height: 18px;
     padding:  0 0 0 20px;
     float: left;
@@ -200,7 +200,7 @@ nav ul li a:hover{
     height: 81px;
     width: 80px;
     float: left;
-    background: black url("/images/афсуищщл%20ифслпкщгтв.png") no-repeat left top;
+    background: url("/images/афсуищщл%20ифслпкщгтв.png") no-repeat left top;
     margin: 0 20px 0 0;
 }
 #facebook h3{
