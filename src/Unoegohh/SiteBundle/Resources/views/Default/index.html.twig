@@ -4,6 +4,9 @@
 <script src="/js/mansonry.js"></script>
 <script src="/js/lightbox.min.js"></script>
 <link rel="stylesheet" href="/css/lightbox.css"/>
+<meta property="og:locale" content="en_US" />
+<meta property="og:locale:alternate" content="fr_FR" />
+<meta property="og:locale:alternate" content="es_ES" />
 {#<link rel="stylesheet" href="/css/screen.css"/>#}
 <link rel="stylesheet" href="/index.css"/>
 <body>
@@ -35,7 +38,7 @@
                     {% else %}
                         Join HOM on Facebook
                     {% endif %}</h3>
-                <div class="fb-like" data-href="{% if pref().facebookUrl %}{{  pref().facebookUrl | raw }}{% endif %}" data-width="350" data-layout="standard" data-action="like" data-show-faces="true" data-share="false"></div>
+                <div class="fb-like" data-href="{% if pref().facebookUrl %}{{  pref().facebookUrl | raw }}{% endif %}" data-width="350" data-layout="standard" data-action="like" data-show-faces="true" data-share="false" data-lang="es"></div>
             </div>
         </header>
         <div id="banner" {% if _locale =="en" %}style="background-image: url('/images/shapka_en.png')"{% endif %}></div>
@@ -44,6 +47,7 @@
             {% block main %}
             {% for post in posts %}
                 <div class="item">
+                    <a name="{{ post.id }}"></a>
                     <a href="{{ post.bigPhoto }}" data-lightbox="image-1" data-title="
                         {% if _locale == "ru" %}
                             {{ post.descr | replace({('"'): "'"}) }}
@@ -95,7 +99,7 @@
             var js, fjs = d.getElementsByTagName(s)[0];
             if (d.getElementById(id)) return;
             js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/{% if _locale == "ru" %}ru_RU{% else %}en_US{% endif %}/sdk.js#xfbml=1&version=v2.0";
+            js.src = "//connect.facebook.net/{% if _locale == "ru" %}en_US{% else %}en_US{% endif %}/sdk.js#xfbml=1&version=v2.0";
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));</script>
 

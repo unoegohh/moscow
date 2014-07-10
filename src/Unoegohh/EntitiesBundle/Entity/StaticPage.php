@@ -27,7 +27,7 @@ class StaticPage
     protected $title;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     protected $url;
 

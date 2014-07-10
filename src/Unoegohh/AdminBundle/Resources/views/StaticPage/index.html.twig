@@ -59,7 +59,6 @@
                         <th class="text-center">Id</th>
                         <th>Название</th>
                         <th>Url</th>
-                        <th>Активен</th>
                         <th class="text-center">Действия</th>
                     </tr>
                     </thead>
@@ -69,7 +68,6 @@
                             <td class="text-center">{{ i.id }}</td>
                             <td>{{ i.title }}</td>
                             <td>{{ i.url }}</td>
-                            <td>{% if i.active %}<i class="fa fa-check text-success"></i>{% else %}<i class="fa fa-times text-danger"></i>{% endif %}</td>
                             <td class="text-center">
                                 <div class="btn-group">
                                     <a href="{{ path("unoegohh_admin_static_page_edit", {"id": i.id}) }}" data-toggle="tooltip" title="" class="btn btn-xs btn-default" data-original-title="Редактирование"><i class="fa fa-pencil"></i></a>
