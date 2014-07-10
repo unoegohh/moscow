@@ -1,0 +1,51 @@
+{% extends "UnoegohhSiteBundle:Default:index.html.twig" %}
+
+{% block main %}
+    {% for press in data %}
+        <a href="{{ press.url }}" class="press_item">
+            <img src="{{ press.image }}" alt=""/>
+            <div class="press_caption">
+                <p>Прочитать статью <i class="icon"></i></p>
+            </div>
+        </a>
+    {% endfor %}
+    <style>
+        .press_item {
+            display: block;
+            position: relative;
+            -webkit-box-shadow: 0px 0px 16px 0px rgba(50, 50, 50, 0.75);
+            -moz-box-shadow:    0px 0px 16px 0px rgba(50, 50, 50, 0.75);
+            box-shadow:         0px 0px 16px 0px rgba(50, 50, 50, 0.75);
+            color: white;
+        }
+        .press_item img {
+            width: 100%;
+        }
+        .press_caption {
+            position: absolute;
+            bottom: 50px;
+            height: 90px;
+            font-size: 27px;
+            padding: 0 32px;
+            width: 286px;
+            left: 355px;
+            background-color: rgba(0,0,0,0.6);
+        }
+        .press_caption i{
+            width: 37px;
+            height: 37px;
+            background-position: -37px -18px;
+
+            position: absolute;
+            right: 32px;
+            top: 27px;
+        }
+
+        .press_item:hover{
+            color: #ff6b00;
+        }
+        .press_item:hover .press_caption i{
+            background-position: 0 -18px;
+        }
+    </style>
+{% endblock %}

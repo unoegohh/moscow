@@ -6,20 +6,6 @@
 <link rel="stylesheet" href="/css/lightbox.css"/>
 {#<link rel="stylesheet" href="/css/screen.css"/>#}
 <link rel="stylesheet" href="/index.css"/>
-<script>
-    $(function(){
-        var $container = $('#container');
-
-        $container.imagesLoaded( function(){
-            $container.masonry({
-                itemSelector : '.item',
-                columnWidth: 340,
-                "gutter": 18
-                //"isFitWidth": true
-            });
-        });
-    })
-</script>
 <body>
     <div id="wrapper">
         <header>
@@ -53,15 +39,9 @@
             </div>
         </header>
         <div id="banner"></div>
-        <nav>
-            <ul>
-                <li><a href="#">О проекте</a></li>
-                <li><a href="#"> Архив</a></li>
-                <li><a href="#">Сми</a></li>
-                <li><a href="#">Контакты</a></li>
-            </ul>
-        </nav>
+        {{ render(controller("UnoegohhSiteBundle:Default:menu", {'locale' : _local})) }}
         <div id="container">
+            {% block main %}
             {% for post in posts %}
                 <div class="item">
                     <a href="{{ post.bigPhoto }}" data-lightbox="image-1" data-title="
@@ -91,6 +71,22 @@
                     </div>
                 </div>
             {% endfor %}
+
+                <script>
+                    $(function(){
+                        var $container = $('#container');
+
+                        $container.imagesLoaded( function(){
+                            $container.masonry({
+                                itemSelector : '.item',
+                                columnWidth: 340,
+                                "gutter": 18
+                                //"isFitWidth": true
+                            });
+                        });
+                    })
+                </script>
+            {% endblock %}
         </div>
     </div>
     <div id="fb-root"></div>

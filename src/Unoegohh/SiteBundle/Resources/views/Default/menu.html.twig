@@ -1,0 +1,17 @@
+<nav>
+    <ul>
+{% for item in data %}
+
+    <li>
+        <a href="{% if item.staticPage %}/{{ _locale }}/{{ item.staticPage.url }}{% elseif item.url %}{{ item.url }}{% else %}/{% endif %}" >
+
+            {% if _locale == "ru" %}
+                {{ item.name }}
+            {% else %}
+                {{ item.nameEng }}
+            {% endif %}
+        </a>
+    </li>
+{% endfor %}
+    </ul>
+</nav>

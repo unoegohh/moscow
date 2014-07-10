@@ -1,3 +1,8 @@
+@font-face {
+    font-family: proxima;
+    src: url(/Proxima.otf);
+}
+
 body {
     padding: 0;
     font-family: "Lucida Grande" , sans-serif;
@@ -10,7 +15,8 @@ body {
     margin: 0 0 20px 0;
 }
 #container {
-    padding: 0 94px;
+    padding: 0 94px 50px;
+
 }
 #container .item{
     margin-bottom: 18px;
@@ -29,6 +35,13 @@ body {
 #container .item img{
     display: block;
     width: 340px;
+}
+#about_page {
+    height: 707px;
+    color: white;
+    font-size: 13px;
+    padding: 100px 600px 0 120px;
+    background: url("/images/humans_about.png") no-repeat center top;
 }
 .blog_helper {
     background-color:rgba(0,0,0,0.3);

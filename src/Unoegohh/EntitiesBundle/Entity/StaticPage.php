@@ -31,15 +31,15 @@ class StaticPage
      */
     protected $url;
 
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    protected $active;
 
     /**
      * @ORM\Column(type="text",length=65535)
      */
     protected $text;
+    /**
+     * @ORM\Column(type="text",length=65535)
+     */
+    protected $textEng;
 
     function __toString()
     {
@@ -157,6 +157,22 @@ class StaticPage
     public function getShowToUser()
     {
         return $this->show_to_user;
+    }
+
+    /**
+     * @param mixed $textEng
+     */
+    public function setTextEng($textEng)
+    {
+        $this->textEng = $textEng;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTextEng()
+    {
+        return $this->textEng;
     }
 
 

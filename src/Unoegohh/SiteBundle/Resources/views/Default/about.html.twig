@@ -1,0 +1,11 @@
+{% extends "UnoegohhSiteBundle:Default:index.html.twig" %}
+
+{% block main %}
+    <div id="about_page">
+        {% if _locale == "ru" %}
+            {{ page.text | raw }}
+        {% else %}
+            {{ page.textEng | raw }}
+        {% endif %}
+    </div>
+{% endblock %}

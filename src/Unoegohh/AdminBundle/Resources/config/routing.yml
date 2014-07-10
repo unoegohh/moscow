@@ -50,6 +50,27 @@ unoegohh_admin_menu_remove_ok:
     path:     /menu/remove/{id}/ok
     defaults: { _controller: UnoegohhAdminBundle:MenuItem:removeOk }
 
+    #press
+unoegohh_admin_press:
+    path:     /press
+    defaults: { _controller: UnoegohhAdminBundle:Press:index }
+
+unoegohh_admin_press_create:
+    path:     /press/create
+    defaults: { _controller: UnoegohhAdminBundle:Press:create }
+
+unoegohh_admin_press_edit:
+    path:     /press/edit/{id}
+    defaults: { _controller: UnoegohhAdminBundle:Press:edit }
+
+unoegohh_admin_press_remove:
+    path:     /press/remove/{id}
+    defaults: { _controller: UnoegohhAdminBundle:Press:remove }
+
+unoegohh_admin_press_remove_ok:
+    path:     /press/remove/{id}/ok
+    defaults: { _controller: UnoegohhAdminBundle:Press:removeOk }
+
 
 unoegohh_admin_site_pref:
     path:     /site_pref

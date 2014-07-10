@@ -29,10 +29,9 @@ class MenuItemForm extends AbstractType
         }
         $builder
             ->add('name')
+            ->add('nameEng')
             ->add('url')
-            ->add('show_to_user')
             ->add('static_page')
-
             ->add('orderNum', "integer")
 
 

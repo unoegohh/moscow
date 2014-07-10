@@ -6,17 +6,14 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Translation\Translator;
 
-class StaticPageForm extends AbstractType
+class PressForm extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title')
-//            ->add('active', null, array('required' => false))
-            ->add('url', null, array('required' => false))
-//            ->add('show_to_user', null, array('required' => false))
-            ->add('text', 'textarea')
-            ->add('textEng', 'textarea')
+            ->add('name')
+            ->add('image')
+            ->add('url', 'textarea')
         ;
     }
 
@@ -26,12 +23,12 @@ class StaticPageForm extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Unoegohh\\EntitiesBundle\\Entity\\StaticPage',
+            'data_class' => 'Unoegohh\\EntitiesBundle\\Entity\\Press',
         ));
     }
 
     public function getName()
     {
-        return 'StaticPage';
+        return 'Press';
     }
 }

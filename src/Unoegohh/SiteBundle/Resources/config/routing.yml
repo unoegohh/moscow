@@ -4,6 +4,18 @@ unoegohh_site_homepage:
     requirements:
         _locale: ru|en
 
+unoegohh_site_about:
+    path:     /{_locale}/about
+    defaults: { _controller: UnoegohhSiteBundle:Default:about }
+    requirements:
+        _locale: ru|en
+
+unoegohh_site_press:
+    path:     /{_locale}/press
+    defaults: { _controller: UnoegohhSiteBundle:Default:press }
+    requirements:
+        _locale: ru|en
+
 unoegohh_site_start:
     path:     /
     defaults: { _controller: UnoegohhSiteBundle:Default:redirect }
