@@ -3,7 +3,7 @@
 {% for item in data %}
 
     <li>
-        <a href="{% if item.staticPage %}/{{ _locale }}/{{ item.staticPage.url }}{% elseif item.url %}{{ item.url }}{% else %}/{% endif %}" >
+        <a href="{% if item.staticPage %}/{{ _locale }}{% if item.staticPage.url %}/{{ item.staticPage.url }}{% endif %}{% elseif item.url %}{{ item.url }}{% else %}/{% endif %}" >
 
             {% if _locale == "ru" %}
                 {{ item.name }}

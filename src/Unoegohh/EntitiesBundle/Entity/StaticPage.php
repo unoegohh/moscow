@@ -21,6 +21,7 @@ class StaticPage
      * @ORM\Column(type="boolean", nullable=true)
      */
     protected $show_to_user;
+
     /**
      * @ORM\Column(type="string")
      */

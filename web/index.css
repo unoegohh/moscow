@@ -41,7 +41,7 @@ body {
     color: white;
     font-size: 13px;
     padding: 100px 600px 0 120px;
-    background: url("/images/humans_about.png") no-repeat center top;
+    background: url("/images/humans_about.jpg") no-repeat center top;
 }
 .blog_helper {
     background-color:rgba(0,0,0,0.3);
@@ -70,6 +70,8 @@ body {
 .blog_helper .blog_icons {
     float: right;
     text-align: right;
+    position: relative;
+    top: -11px;
 }
 .blog_helper .blog_icons a {
     display: inline-block;
@@ -91,7 +93,7 @@ body {
     width: 10px;
     height: 17px;
     background-position: -31px 0px;
-    top: -2px;
+    top: 4px;
 }
 .blog_helper .blog_icons .blog_twitter {
     width: 16px;
@@ -248,4 +250,16 @@ nav ul li a:hover{
     height: 13px;
     background-position: 0px 0px;
     top: -9px;
+}
+.blog_icons a{
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    border-radius: 14px;
+    position: relative;
+    top: 3px;
+    text-align: center;
+}
+.blog_icons a:hover{
+    background: #ff6b00;
 }

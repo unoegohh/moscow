@@ -60,10 +60,10 @@
                     <div class="blog_helper">
                         {{ post.date |date('d.m.y') }}
                         <div class="blog_icons">
-                            <a href="#"><i class="icon blog_flicr"></i></a>
-                            <a href="#"><i class="icon blog_vk"></i></a>
-                            <a href="#"><i class="icon blog_tumblr"></i></a>
-                            <a href="#"><i class="icon blog_twitter"></i></a>
+                            {#<a href="#"><i class="icon blog_flicr"></i></a>#}
+                            {#<a href="#"><i class="icon blog_vk"></i></a>#}
+                            <a href="http://www.tumblr.com/reblog/{{ post.TId }}/{{ post.reblog }}" target="_blank"><i class="icon blog_tumblr"></i></a>
+                            {#<a href="#"><i class="icon blog_twitter"></i></a>#}
                         </div>
                     </div>
                     <div class="item_text">
