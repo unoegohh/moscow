@@ -218,6 +218,7 @@ nav ul li a:hover{
 }
 #facebook h3{
     text-transform: uppercase;
+    margin-bottom: 7px;
 }
 .icon {
     background: url("/images/sprite.png") no-repeat center center;

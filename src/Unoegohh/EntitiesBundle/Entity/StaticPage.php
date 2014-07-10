@@ -36,6 +36,7 @@ class StaticPage
      * @ORM\Column(type="text",length=65535)
      */
     protected $text;
+
     /**
      * @ORM\Column(type="text",length=65535)
      */

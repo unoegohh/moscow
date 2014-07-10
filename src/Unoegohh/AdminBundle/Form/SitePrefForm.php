@@ -23,6 +23,7 @@ class SitePrefForm extends AbstractType
             ->add('twitterLink')
             ->add('instaLink')
             ->add('tumblrDelimeter')
+            ->add('email')
         ;
     }
 

@@ -37,6 +37,10 @@ class DefaultController extends Controller
         $repo = $em->getRepository("UnoegohhEntitiesBundle:Press");
         return $this->render('UnoegohhSiteBundle:Default:press.html.twig', array('data' => $repo->findAll(), "_locale" =>$_locale ));
     }
+    public function contactsAction($_locale)
+    {
+        return $this->render('UnoegohhSiteBundle:Default:contacts.html.twig', array( "_locale" =>$_locale ));
+    }
     public function redirectAction()
     {
         return $this->redirect($this->generateUrl('unoegohh_site_homepage', array('_locale' => 'ru')));

@@ -1,0 +1,103 @@
+{% extends "UnoegohhSiteBundle:Default:index.html.twig" %}
+
+{% block main %}
+    <div id="contacts_page">
+
+        {% if _locale == "ru" %}
+            <p>Свои вопросы и предложениы направляйте на почту:</p>
+        {% else %}
+            <p>Please feel free to send your questions and suggestions to my mail:</p>
+        {% endif %}
+        <p>{{ pref().email }}</p>
+        <p id="contacts_social">
+            {% if pref().facebookLink %}
+                <a href="{{ pref().facebookLink }}"><i class="facebook icon"></i></a>
+            {% endif %}
+            {% if pref().vkLink %}
+                <a href="{{ pref().vkLink }}"><i class="vk icon"></i></a>
+            {% endif %}
+            {% if pref().tumblrLink %}
+                <a href="{{ pref().tumblrLink }}"><i class="vk icon"></i></a>
+            {% endif %}
+            {% if pref().instaLink %}
+                <a href="{{ pref().instaLink }}"><i class="insta icon"></i></a>
+            {% endif %}
+            {% if pref().twitterLink %}
+                <a href="{{ pref().twitterLink }}"><i class="twitter icon"></i></a>
+            {% endif %}
+        </p>
+
+        {% if _locale == "ru" %}
+            <p>Присоединяйтесь к нам в социальных сетях</p>
+        {% else %}
+            <p>Join HOM</p>
+        {% endif %}
+    </div>
+
+    <style>
+        #contacts_social a .facebook{
+            background-position: -74px -30px;
+            width: 16px;
+            height: 31px;
+            top: 12px;
+            left: 20px;
+        }
+        #contacts_social a .vk{
+            background-position: -57px -61px;
+            width: 34px;
+            height: 19px;
+            top: 19px;
+            left: 11px;
+        }
+        #contacts_social a .tumblr{
+            background-position: -74px 0;
+            width: 18px;
+            height: 30px;
+            top: 12px;
+            left: 19px;
+        }
+        #contacts_social a .insta{
+            background-position: -30px -56px;
+            width: 27px;
+            height: 27px;
+            top: 14px;
+            left: 14px;
+        }
+        #contacts_social a .twitter{
+            background-position: 0 -56px;
+            width: 30px;
+            height: 24px;
+            top: 16px;
+            left: 15px;
+        }
+        #contacts_social a .icon{
+            position: absolute;
+        }
+        #contacts_page {
+            background: url('/images/humans_contacts.png') no-repeat center top;
+            height: 467px;
+            padding: 90px 0 0 0;
+        }
+        #contacts_page p{
+            text-align: center;
+            font-size: 18px;
+        }
+        #contacts_page #contacts_social a{
+            background: black;
+            display: inline-block;
+            position: relative;
+            width: 56px;
+            height: 56px;
+            border-radius: 28px;
+
+        }
+        #contacts_page #contacts_social{
+            margin:  120px 0 0 0 ;
+
+        }
+        #contacts_page #contacts_social a:hover{
+            background: #ff6b00;
+
+        }
+    </style>
+{% endblock %}

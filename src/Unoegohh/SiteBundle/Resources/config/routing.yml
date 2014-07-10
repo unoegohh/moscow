@@ -16,6 +16,12 @@ unoegohh_site_press:
     requirements:
         _locale: ru|en
 
+unoegohh_site_contacts:
+    path:     /{_locale}/contacts
+    defaults: { _controller: UnoegohhSiteBundle:Default:contacts }
+    requirements:
+        _locale: ru|en
+
 unoegohh_site_start:
     path:     /
     defaults: { _controller: UnoegohhSiteBundle:Default:redirect }

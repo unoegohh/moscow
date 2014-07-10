@@ -5,7 +5,12 @@
         <a href="{{ press.url }}" class="press_item">
             <img src="{{ press.image }}" alt=""/>
             <div class="press_caption">
-                <p>Прочитать статью <i class="icon"></i></p>
+
+                {% if _locale == "ru" %}
+                    <p>Прочитать статью <i class="icon"></i></p>
+                {% else %}
+                    <p>Read more <i class="icon"></i></p>
+                {% endif %}
             </div>
         </a>
     {% endfor %}

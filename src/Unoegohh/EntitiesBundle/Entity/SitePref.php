@@ -30,6 +30,11 @@ class SitePref
     /**
      * @ORM\Column(type="string", nullable=true)
      */
+    protected $email;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
     protected $tumblrToken;
     /**
      * @ORM\Column(type="string", nullable=true)
@@ -303,6 +308,22 @@ class SitePref
     public function getTumblrBlogName()
     {
         return $this->tumblrBlogName;
+    }
+
+    /**
+     * @param mixed $email
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEmail()
+    {
+        return $this->email;
     }
 
 
