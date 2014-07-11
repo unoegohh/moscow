@@ -31,39 +31,48 @@ class GetAllPostsCommand extends ContainerAwareCommand
         $clientClass = new ThumblrClient($pref);
         $client = $clientClass->GetClient();
 
-        $posts = $client->getBlogPosts($pref->getTumblrBlogName(), $options = null);
+        $end = false;
+        $offset = 0;
+        while($end == false){
+
+            $posts = $client->getBlogPosts($pref->getTumblrBlogName(), $options = array('offset' => $offset));
 
 
-        $prefRepo = $em->getRepository('UnoegohhEntitiesBundle:Post');
-        foreach($posts->posts as $post){
-            try{
-                $item = new Post();
-                $item->setName($post->blog_name);
-                $item->setPhoto($post->photos[0]->alt_sizes[2]->url);
-                $item->setMiniPhoto($post->photos[0]->alt_sizes[5]->url);
-                $item->setDate(new \DateTime("@" . $post->timestamp));
-                $item->setReblog($post->reblog_key);
-                $item->setBigPhoto($post->photos[0]->original_size->url);
-                $item->setTId($post->id);
-                $item->setTUrl($post->short_url);
+            $prefRepo = $em->getRepository('UnoegohhEntitiesBundle:Post');
+            foreach($posts->posts as $post){
+                try{
+                    $item = new Post();
+                    $item->setName($post->blog_name);
+                    $item->setPhoto($post->photos[0]->alt_sizes[2]->url);
+                    $item->setMiniPhoto($post->photos[0]->alt_sizes[5]->url);
+                    $item->setDate(new \DateTime("@" . $post->timestamp));
+                    $item->setReblog($post->reblog_key);
+                    $item->setBigPhoto($post->photos[0]->original_size->url);
+                    $item->setTId($post->id);
+                    $item->setTUrl($post->short_url);
 
-                $postDescrs = explode($pref->getTumblrDelimeter(),$post->caption);
-                $item->setDescr($postDescrs[1]);
-                $item->setDescrEng($postDescrs[0]);
-                $postItem = $prefRepo->findOneBy(array('tId' => $post->id));
-                if(!$postItem){
-                    $output->writeln('Added item with id ' . $item->getTId());
+                    $postDescrs = explode($pref->getTumblrDelimeter(),$post->caption);
+                    $item->setDescr($postDescrs[1]);
+                    $item->setDescrEng($postDescrs[0]);
+                    $postItem = $prefRepo->findOneBy(array('tId' => $post->id));
+                    if(!$postItem){
+                        $output->writeln('Added item with id ' . $item->getTId());
 
-                    $em->persist($item);
+                        $em->persist($item);
+                    }
                 }
-            }
-            catch(\Exception $e){
-                $output->writeln('Problems with  ' . $item->getTId());
+                catch(\Exception $e){
+                    $output->writeln('Problems with  ' . $item->getTId());
+
+                }
 
             }
-
+            if(count($posts) != 20){
+                $end = true;
+            }
+            $offset += 20;
+            $em->flush();
         }
-        $em->flush();
 
     }
 }
