@@ -106,6 +106,7 @@ class PostController extends Controller
                 $params['source'] = $data['file'];
             }
 
+            var_dump($pref);die;
             $clientClass = new ThumblrClient($pref);
             $client = $clientClass->GetClient();
             $responce = $client->editPost($pref->getTumblrBlogName(),$id->getTId(), $params );
