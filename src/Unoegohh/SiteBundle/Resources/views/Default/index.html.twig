@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <title>Humans of moscow</title>
 <script src="/admin/js/vend/jquery-1.11.0.min.js"></script>
@@ -13,8 +14,8 @@
     <div id="wrapper">
         <header>
             <div id="language">
-                <a href="/ru">RU</a> |
-                <a href="/en">EN</a>
+                <a href="/ru{{ url }}">RU</a> |
+                <a href="/en{{ url }}">EN</a>
             </div>
             <div id="social">
                 {% if pref().vkLink %}
@@ -44,6 +45,7 @@
         <div id="banner" {% if _locale =="en" %}style="background-image: url('/images/shapka_en.png')"{% endif %}></div>
         {{ render(controller("UnoegohhSiteBundle:Default:menu", {'locale' : _local})) }}
         <div id="container">
+            {{ 'trans' |trans({}, 'UnoegohhSiteBundle') }}
             {% block main %}
             {% for post in posts %}
                 <div class="item">
@@ -55,10 +57,12 @@
                             {{ post.descrEng | replace({('"'): "'"}) }}
                         {% endif %}">
                         <img src="{{ post.photo }}" alt="" width="340px"/>
-
                     </a>
                     <div class="blog_helper">
-                        {{ post.date |date('d.m.y') }}
+                        {{ post.date |date('d') }}
+
+                        {{ ((post.date |date('m'))~ _locale )|trans({}, 'UnoegohhSiteBundle') }}
+                        {{ post.date |date('y') }}
                         <div class="blog_icons">
                             {#<a href="#"><i class="icon blog_flicr"></i></a>#}
                             {#<a href="#"><i class="icon blog_vk"></i></a>#}

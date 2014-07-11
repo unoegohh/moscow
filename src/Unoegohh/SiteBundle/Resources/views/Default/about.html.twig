@@ -1,7 +1,8 @@
+{% set url="/about" %}
 {% extends "UnoegohhSiteBundle:Default:index.html.twig" %}
 
 {% block main %}
-    <div id="about_page">
+    <div id="about_page" style="font-family: Thinn">
         {% if _locale == "ru" %}
             {{ page.text | raw }}
         {% else %}

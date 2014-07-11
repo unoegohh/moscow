@@ -1,11 +1,23 @@
 @font-face {
-    font-family: proxima;
-    src: url(/Proxima.otf);
+    font-family: Light;
+    src: url(/Light.otf);
+}
+@font-face {
+    font-family: Thinn;
+    src: url(/Thin.otf);
+}
+@font-face {
+    font-family: SemiBold;
+    src: url(/Semibold.otf);
+}
+@font-face {
+    font-family: Regular;
+    src: url(/Regular.otf);
 }
 
 body {
     padding: 0;
-    font-family: "Lucida Grande" , sans-serif;
+    font-family: Regular , sans-serif;
     margin: 0;
     background:  url("/images/pattern.jpg");
 }
@@ -23,7 +35,7 @@ body {
     font-size: 13px;
     width: 340px;
     overflow: hidden;
-
+    font-family: Light;
     background: #eeeeee;
 }
 #container .item .item_text{
@@ -53,6 +65,7 @@ body {
     width:310px;
     font-size:14px;
     line-height:14px;
+    font-family: Regular2;
     opacity:0;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
@@ -190,11 +203,13 @@ nav ul {
 }
 nav ul li {
     display: inline-block;
+
     font-size: 14px;
 }
 nav ul li a{
     text-decoration: none;
     text-transform: uppercase;
+    font-family: SemiBold;
     color: black;
     padding: 0 10px;
     margin: 14px 0;

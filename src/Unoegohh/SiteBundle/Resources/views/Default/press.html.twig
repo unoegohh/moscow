@@ -1,3 +1,5 @@
+{% set url="/press" %}
+
 {% extends "UnoegohhSiteBundle:Default:index.html.twig" %}
 
 {% block main %}
@@ -5,7 +7,6 @@
         <a href="{{ press.url }}" class="press_item">
             <img src="{{ press.image }}" alt=""/>
             <div class="press_caption">
-
                 {% if _locale == "ru" %}
                     <p>Прочитать статью <i class="icon"></i></p>
                 {% else %}
