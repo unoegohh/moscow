@@ -52,12 +52,12 @@ class PostController extends Controller
 
 
             $data = $form->getData();
-            $params = array("source" => $data['file'], "type" => "photo", 'caption' => $data['descr_eng'] . "#humasofmoscow#" . $data['descr']);
-           // var_dump($params);die;
-
             $prefRepo = $em->getRepository('UnoegohhEntitiesBundle:SitePref');
 
             $pref = $prefRepo->findOneBy(array(), array(), 1);
+            $params = array("source" => $data['file'], "type" => "photo", 'caption' => $data['descr_eng'] . $pref->getTumblrDelimeter() . $data['descr']);
+           // var_dump($params);die;
+
             $clientClass = new ThumblrClient($pref);
             $client = $clientClass->GetClient();
             $responce = $client->createPost($pref->getTumblrBlogName(), $params );
