@@ -37,7 +37,7 @@ class GetAllPostsCommand extends ContainerAwareCommand
 
             $posts = $client->getBlogPosts($pref->getTumblrBlogName(), $options = array('offset' => $offset));
 
-            $output->writeln(count($posts));
+            $output->writeln(count($posts->posts));
 
             $prefRepo = $em->getRepository('UnoegohhEntitiesBundle:Post');
             foreach($posts->posts as $post){
@@ -68,7 +68,7 @@ class GetAllPostsCommand extends ContainerAwareCommand
                 }
 
             }
-            if(count($posts) != 20){
+            if(count($posts->posts) != 20){
                 $end = true;
             }
             $offset += 20;
