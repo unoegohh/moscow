@@ -45,7 +45,6 @@
         <div id="banner" {% if _locale =="en" %}style="background-image: url('/images/shapka_en.png')"{% endif %}></div>
         {{ render(controller("UnoegohhSiteBundle:Default:menu", {'locale' : _local})) }}
         <div id="container">
-            {{ 'trans' |trans({}, 'UnoegohhSiteBundle') }}
             {% block main %}
             {% for post in posts %}
                 <div class="item">
