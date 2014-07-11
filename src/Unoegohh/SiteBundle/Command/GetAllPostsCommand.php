@@ -37,6 +37,7 @@ class GetAllPostsCommand extends ContainerAwareCommand
 
             $posts = $client->getBlogPosts($pref->getTumblrBlogName(), $options = array('offset' => $offset));
 
+            $output->writeln(count($posts));
 
             $prefRepo = $em->getRepository('UnoegohhEntitiesBundle:Post');
             foreach($posts->posts as $post){
