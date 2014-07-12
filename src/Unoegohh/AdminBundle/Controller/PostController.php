@@ -8,6 +8,7 @@ use Unoegohh\AdminBundle\Form\FoodCategoryForm;
 use Unoegohh\AdminBundle\Form\MenuItemForm;
 use Unoegohh\AdminBundle\Form\SitePrefForm;
 use Symfony\Component\HttpFoundation\Request;
+use Unoegohh\AdminBundle\vkapi;
 use Unoegohh\EntitiesBundle\Entity\FoodCategory;
 use Doctrine\ORM;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -64,6 +65,10 @@ class PostController extends Controller
             $post = $client->getBlogPosts($pref->getTumblrBlogName(), array('id' =>$responce->id ));
             $item = new Post();
             $item->convertFromTumblr($post->posts[0], $pref);
+
+            $api_id = ' id application '; // Insert here id of your application
+            $vk_id = '4457036'; // Insert here you vk id
+            $vkClient = new vkapi(4457036, $vk_id);
             $em->persist($item);
             $em->flush();
             $this->get('session')->getFlashBag()->add(
@@ -106,7 +111,7 @@ class PostController extends Controller
                 $params['source'] = $data['file'];
             }
 
-            var_dump($pref);die;
+            //var_dump($pref);die;
             $clientClass = new ThumblrClient($pref);
             $client = $clientClass->GetClient();
             $responce = $client->editPost($pref->getTumblrBlogName(),$id->getTId(), $params );
