@@ -68,7 +68,7 @@ class PostController extends Controller
 
             $api_id = ' id application '; // Insert here id of your application
             $vk_id = '4457036'; // Insert here you vk id
-            $vkClient = new vkapi(4457036, $vk_id);
+            //$vkClient = new vkapi(4457036, $vk_id);
             $em->persist($item);
             $em->flush();
             $this->get('session')->getFlashBag()->add(
