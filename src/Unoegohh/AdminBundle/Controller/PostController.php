@@ -44,6 +44,8 @@ class PostController extends Controller
             ->add('file')
             ->add('descr','textarea')
             ->add('descr_eng','textarea')
+            ->add('vkLink', null, array('required' => false))
+            ->add('fbLink', null, array('required' => false))
         ->getForm();
 
         $form->handleRequest($request);
@@ -90,12 +92,16 @@ class PostController extends Controller
         $data = array(
             'file' => $id->getPhoto(),
             'descr' => $id->getDescr(),
-            'descr_eng' => $id->getDescrEng()
+            'descr_eng' => $id->getDescrEng(),
+            'vkLink' => $id->getVkLink(),
+            'fbLink' => $id->getFbLink()
         );
         $form = $this->createFormBuilder($data)
             ->add('file')
             ->add('descr','textarea')
             ->add('descr_eng','textarea')
+            ->add('vkLink', null, array('required' => false))
+            ->add('fbLink', null, array('required' => false))
             ->getForm();
 
         $form->handleRequest($request);
@@ -118,6 +124,8 @@ class PostController extends Controller
             //var_dump($responce);die;
             $post = $client->getBlogPosts($pref->getTumblrBlogName(), array('id' =>$responce->id ));
             $id->convertFromTumblr($post->posts[0], $pref);
+            $id->setFbLink($data['fbLink']);
+            $id->setVkLink($data['vkLink']);
             $em->persist($id);
             $em->flush();
             $this->get('session')->getFlashBag()->add(

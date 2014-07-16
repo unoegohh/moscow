@@ -43,6 +43,16 @@ class Post
     protected $reblog;
 
     /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $vkLink;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $fbLink;
+
+    /**
      * @ORM\Column(type="string")
      */
     protected $miniPhoto;
@@ -58,12 +68,12 @@ class Post
     protected $tUrl;
 
     /**
-     * @ORM\Column(type="string", length=10000)
+     * @ORM\Column(type="string", length=5000)
      */
     protected $descr;
 
     /**
-     * @ORM\Column(type="string", length=10000)
+     * @ORM\Column(type="string", length=5000)
      */
     protected $descr_eng;
 
@@ -242,6 +252,39 @@ class Post
     {
         return $this->date;
     }
+
+    /**
+     * @param mixed $fbLink
+     */
+    public function setFbLink($fbLink)
+    {
+        $this->fbLink = $fbLink;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFbLink()
+    {
+        return $this->fbLink;
+    }
+
+    /**
+     * @param mixed $vkLink
+     */
+    public function setVkLink($vkLink)
+    {
+        $this->vkLink = $vkLink;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getVkLink()
+    {
+        return $this->vkLink;
+    }
+
 
 
 

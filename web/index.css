@@ -65,16 +65,13 @@ body {
     width:310px;
     font-size:14px;
     line-height:14px;
-    font-family: Regular2;
+    font-family: Regular;
     opacity:0;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     transition: all 0.5s ease;}
 .item:hover .blog_helper {
-
     margin-top:-40px;
-
-
     opacity:1;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
@@ -87,26 +84,29 @@ body {
     top: -11px;
 }
 .blog_helper .blog_icons a {
-    display: inline-block;
+    display: block;
     margin: 0 5px 0 0;
+    float: left;
 }
-.blog_helper .blog_icons .blog_flicr {
+.blog_helper .blog_icons .blog_facebook {
     width: 8px;
     height: 17px;
     background-position: -60px 0px;
-    top: -3px;
+    top: 5px;
+    left: -1px;
 }
 .blog_helper .blog_icons .blog_vk {
     width: 19px;
     height: 11px;
     background-position: -41px 0px;
-    top: -4px;
+    top: 9px;
+    left: -1px
 }
 .blog_helper .blog_icons .blog_tumblr {
     width: 10px;
     height: 17px;
     background-position: -31px 0px;
-    top: 4px;
+    top: 5px;
 }
 .blog_helper .blog_icons .blog_twitter {
     width: 16px;

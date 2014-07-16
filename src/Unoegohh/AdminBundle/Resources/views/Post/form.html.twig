@@ -8,6 +8,22 @@
         </div>
     </div>
     <div class="form-group">
+        <label class="col-md-3 control-label" for="example-hf-password">Ссылка на пост в контакте</label>
+
+        <div class="col-md-9">
+            {{ form_widget(form.vkLink, {'attr': {'class': 'ckeditor form-control '}}) }}
+        </div>
+
+    </div>
+    <div class="form-group">
+        <label class="col-md-3 control-label" for="example-hf-password">Ссылка на помст в фейсбуке</label>
+
+        <div class="col-md-9">
+            {{ form_widget(form.fbLink, {'attr': {'class': 'ckeditor form-control '}}) }}
+        </div>
+
+    </div>
+    <div class="form-group">
         <label class="col-md-3 control-label" for="example-hf-password">Описание</label>
 
         <div class="col-md-9">

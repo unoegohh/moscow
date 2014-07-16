@@ -66,6 +66,12 @@
                             {#<a href="#"><i class="icon blog_flicr"></i></a>#}
                             {#<a href="#"><i class="icon blog_vk"></i></a>#}
                             <a href="http://www.tumblr.com/reblog/{{ post.TId }}/{{ post.reblog }}" target="_blank"><i class="icon blog_tumblr"></i></a>
+                            {% if post.vkLink %}
+                                <a href="{{ post.vkLink }}" target="_blank"><i class="icon blog_vk"></i></a>
+                            {% endif %}
+                            {% if post.fbLink %}
+                                <a href="{{ post.fbLink }}" target="_blank"><i class="icon blog_facebook"></i></a>
+                            {% endif %}
                             {#<a href="#"><i class="icon blog_twitter"></i></a>#}
                         </div>
                     </div>
