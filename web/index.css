@@ -317,6 +317,8 @@ nav ul li a:hover{
     }
     #container {
         padding: 0;
+        width: 561px;
+        margin: 0 auto;
     }
     .blog_helper {
         width: 531px;
