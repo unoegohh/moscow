@@ -287,8 +287,9 @@ nav ul li a:hover{
         background: url("/images/humans_640.png") center center no-repeat;
     }
     #wrapper {
-        width: 561px;
-        margin:0 auto;
+        width: 640px;
+        box-sizing: content-box;
+        margin: 0 auto;
         box-shadow: none;
     }
     body{
