@@ -4,13 +4,13 @@
 <script src="/admin/js/vend/jquery-1.11.0.min.js"></script>
 <script src="/js/mansonry.js"></script>
 <script src="/js/lightbox.min.js"></script>
-<link rel="stylesheet" href="/css/lightbox.css"/>
+<link rel="stylesheet" href="/css/lightbox.css"  media="screen"/>
 <meta property="og:locale" content="en_US" />
 <meta property="og:locale:alternate" content="fr_FR" />
 <meta property="og:locale:alternate" content="es_ES" />
 {#<link rel="stylesheet" href="/css/screen.css"/>#}
 <link rel="stylesheet" href="/index.css"/>
-<body>
+<body {% if _locale =="en" %}class="en"{% endif %}>
     <div id="wrapper">
         <header>
             <div id="language">
@@ -42,47 +42,12 @@
                 <div class="fb-like" data-href="{% if pref().facebookUrl %}{{  pref().facebookUrl | raw }}{% endif %}" data-width="350" data-layout="standard" data-action="like" data-show-faces="true" data-share="false" data-lang="es"></div>
             </div>
         </header>
-        <div id="banner" {% if _locale =="en" %}style="background-image: url('/images/shapka_en.png')"{% endif %}></div>
-        {{ render(controller("UnoegohhSiteBundle:Default:menu", {'locale' : _local})) }}
+        <div id="banner"></div>
+        {{ render(controller("UnoegohhSiteBundle:Default:menu", {'locale' : _locale})) }}
         <div id="container">
             {% block main %}
             {% for post in posts %}
-                <div class="item">
-                    <a name="{{ post.id }}"></a>
-                    <a href="{{ post.bigPhoto }}" data-lightbox="image-1" data-title="
-                        {% if _locale == "ru" %}
-                            {{ post.descr | replace({('"'): "'"}) }}
-                        {% else %}
-                            {{ post.descrEng | replace({('"'): "'"}) }}
-                        {% endif %}">
-                        <img src="{{ post.photo }}" alt="" width="340px"/>
-                    </a>
-                    <div class="blog_helper">
-                        {{ post.date |date('d') }}
-
-                        {{ ((post.date |date('m'))~ _locale )|trans({}, 'UnoegohhSiteBundle') }}
-                        {{ post.date |date('y') }}
-                        <div class="blog_icons">
-                            {#<a href="#"><i class="icon blog_flicr"></i></a>#}
-                            {#<a href="#"><i class="icon blog_vk"></i></a>#}
-                            <a href="http://www.tumblr.com/reblog/{{ post.TId }}/{{ post.reblog }}" target="_blank"><i class="icon blog_tumblr"></i></a>
-                            {% if post.vkLink %}
-                                <a href="{{ post.vkLink }}" target="_blank"><i class="icon blog_vk"></i></a>
-                            {% endif %}
-                            {% if post.fbLink %}
-                                <a href="{{ post.fbLink }}" target="_blank"><i class="icon blog_facebook"></i></a>
-                            {% endif %}
-                            {#<a href="#"><i class="icon blog_twitter"></i></a>#}
-                        </div>
-                    </div>
-                    <div class="item_text">
-                        {% if _locale == "ru" %}
-                            {{ post.descr | raw }}
-                        {% else %}
-                            {{ post.descrEng | raw }}
-                        {% endif %}
-                    </div>
-                </div>
+                {% include "UnoegohhSiteBundle:Default:postItem.html.twig" with {'post': post, '_locale' : _locale} %}
             {% endfor %}
 
                 <script>
@@ -97,8 +62,43 @@
                                 //"isFitWidth": true
                             });
                         });
-                    })
+                        var moreUrl ="{{ path('unoegohh_site_get_more', {"_locale" : _locale}) }}";
+                        var done = true;
+                        window.onscroll = function(ev) {
+
+                            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight && done) {
+                                done = false;
+                                var lastId = $('#container .item:last').attr('data-id');
+                                console.log('last-id ' + lastId );
+                                $.post(moreUrl + '/' + lastId,function(data){
+
+                                    var ara = [];
+                                    for(var i = 0; i < data.items.length; i++) {
+                                        var obj = data.items[i];
+
+                                        //console.log(obj);
+                                        ara.push(obj);
+
+                                    }
+                                    $container.append(ara);
+                                    $container.masonry('reloadItems');
+                                    $container.masonry('layout');
+//                                    $(data.items).each(function(){
+//                                        $(this).each(function(){
+//                                            console.log($(this));
+//                                        });
+//                                    });
+
+                                    //console.log($items);
+
+                                    done = true;
+
+                                });
+                            }
+                        };
+                    });
                 </script>
+
             {% endblock %}
         </div>
     </div>

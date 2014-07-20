@@ -1,0 +1,36 @@
+<div class="item" data-id="{{ post.date | date('U')}}">
+    <a name="{{ post.id }}"></a>
+    <a href="{{ post.bigPhoto }}" data-lightbox="image-1" data-title="
+                        {% if _locale == "ru" %}
+                            {{ post.descr | replace({('"'): "'"}) }}
+                        {% else %}
+                            {{ post.descrEng | replace({('"'): "'"}) }}
+                        {% endif %}">
+        <img src="{{ post.photo }}" alt="" width="340px"/>
+    </a>
+    <div class="blog_helper">
+        {{ post.date |date('d') }}
+
+        {{ ((post.date |date('m'))~ _locale )|trans({}, 'UnoegohhSiteBundle') }}
+        {{ post.date |date('y') }}
+        <div class="blog_icons">
+            {#<a href="#"><i class="icon blog_flicr"></i></a>#}
+            {#<a href="#"><i class="icon blog_vk"></i></a>#}
+            <a href="http://www.tumblr.com/reblog/{{ post.TId }}/{{ post.reblog }}" target="_blank"><i class="icon blog_tumblr"></i></a>
+            {% if post.vkLink %}
+                <a href="{{ post.vkLink }}" target="_blank"><i class="icon blog_vk"></i></a>
+            {% endif %}
+            {% if post.fbLink %}
+                <a href="{{ post.fbLink }}" target="_blank"><i class="icon blog_facebook"></i></a>
+            {% endif %}
+            {#<a href="#"><i class="icon blog_twitter"></i></a>#}
+        </div>
+    </div>
+    <div class="item_text">
+        {% if _locale == "ru" %}
+            {{ post.descr | raw }}
+        {% else %}
+            {{ post.descrEng | raw }}
+        {% endif %}
+    </div>
+</div>

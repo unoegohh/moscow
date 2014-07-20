@@ -278,3 +278,50 @@ nav ul li a:hover{
 .blog_icons a:hover{
     background: #ff6b00;
 }
+.en #banner{
+    background-image: url("/images/shapka_en.png");
+}
+@media only screen and (max-width: 640px){
+    #wrapper #banner {
+        height: 110px;
+        background: url("/images/humans_640.png") center center no-repeat;
+    }
+    #wrapper {
+        width: 561px;
+        margin:0 auto;
+        box-shadow: none;
+    }
+    body{
+        background: none;
+    }
+    #facebook , #social , nav{
+        display: none;
+    }
+    #container .item {
+        width: 561px;
+        font-size: 18px;
+    }
+    header {
+        height: 74px;
+        line-height: 74px;
+    }
+    header #language {
+        width: 100%;
+        font-size: 14px;
+        float: none;
+        text-align: center;
+    }
+    #container .item img {
+        width: 561px;
+    }
+    #container {
+        padding: 0;
+    }
+    .blog_helper {
+        width: 531px;
+        font-size: 18px;
+    }
+}
+@media screen and (max-device-width: 480px){
+
+}

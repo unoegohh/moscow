@@ -5,7 +5,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Unoegohh\EntitiesBundle\Repository\PostRepository")
  * @ORM\Table(name="posts")
  */
 class Post

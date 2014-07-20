@@ -4,6 +4,7 @@ namespace Unoegohh\SiteBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Config\Definition\Exception\Exception;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class DefaultController extends Controller
 {
@@ -11,8 +12,19 @@ class DefaultController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository("UnoegohhEntitiesBundle:Post");
-        $posts = $repo->findBy(array(), array('date' => 'DESC'));
+        $posts = $repo->findBy(array(), array('date' => 'DESC'),10);
         return $this->render('UnoegohhSiteBundle:Default:index.html.twig', array('posts' => $posts, "_locale" =>$_locale ));
+    }
+    public function getMoreAction($_locale,$id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $repo = $em->getRepository("UnoegohhEntitiesBundle:Post");
+        $posts = $repo->addPosts($id);
+        $output = array();
+        foreach($posts as $post){
+            $output[] = $this->renderView("UnoegohhSiteBundle:Default:postItem.html.twig", array('post' => $post, '_locale' => $_locale));
+        }
+        return new JsonResponse(array('items' => $output));
     }
     public function menuAction($_locale)
     {

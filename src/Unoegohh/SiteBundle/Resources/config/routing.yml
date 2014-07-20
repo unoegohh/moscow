@@ -16,6 +16,12 @@ unoegohh_site_press:
     requirements:
         _locale: ru|en
 
+unoegohh_site_get_more:
+    path:     /{_locale}/getMore/{id}
+    defaults: { _controller: UnoegohhSiteBundle:Default:getMore, id:1 }
+    requirements:
+        _locale: ru|en
+
 unoegohh_site_contacts:
     path:     /{_locale}/contacts
     defaults: { _controller: UnoegohhSiteBundle:Default:contacts }
