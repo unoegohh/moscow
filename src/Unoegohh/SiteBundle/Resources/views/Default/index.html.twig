@@ -12,6 +12,56 @@
 <meta name="viewport" content="width=device-width;initial-scale=1.0">
 {#<link rel="stylesheet" href="/css/screen.css"/>#}
 <link rel="stylesheet" href="/index.css"/>
+<script>
+    (function(){
+        var ua = navigator.userAgent.toLowerCase().replace(/\s+/,'');
+
+        var matchers = {
+            ios: /(iphone|ipod|ipad)/,
+            ipad: /ipad/,
+            iphone: /(iphone|ipod)/,
+            android: 'android',
+            android2: 'android2',
+            android4: 'android4'
+        }
+
+        var h = $('html');
+
+
+        for (i in matchers) {
+            var m = matchers[i];
+            if ((typeof(m) == "string" && ua.indexOf(m) > -1) || (typeof(m) == "object" && ua.match(m))) {
+                h.addClass(i)
+            }
+        }
+
+    })();
+
+    $(function(){
+
+        function detectmob() {
+            if( navigator.userAgent.match(/Android/i)
+                    || navigator.userAgent.match(/webOS/i)
+                    || navigator.userAgent.match(/iPhone/i)
+                    || navigator.userAgent.match(/iPad/i)
+                    || navigator.userAgent.match(/iPod/i)
+                    || navigator.userAgent.match(/BlackBerry/i)
+                    || navigator.userAgent.match(/Windows Phone/i)
+                    ){
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        //var mobile = detectmob();
+        var mobile = true;
+
+        if(mobile == true){
+            $('.item_photo').unwrap();
+        }
+    })
+</script>
 <body {% if _locale =="en" %}class="en"{% endif %}>
     <div id="wrapper">
         <header>
@@ -60,7 +110,8 @@
                             $container.masonry({
                                 itemSelector : '.item',
                                 columnWidth: 340,
-                                "gutter": 18
+                                "gutter": 18,
+                                transitionDuration: 0
                                 //"isFitWidth": true
                             });
                         });

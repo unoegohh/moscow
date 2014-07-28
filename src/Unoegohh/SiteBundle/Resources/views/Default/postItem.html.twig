@@ -1,12 +1,12 @@
 <div class="item" data-id="{{ post.date | date('U')}}">
     <a name="{{ post.id }}"></a>
-    <a href="{{ post.bigPhoto }}" data-lightbox="image-1" data-title="
+    <a href="{{ post.bigPhoto }}" data-lightbox="image-1" class="photo" data-title="
                         {% if _locale == "ru" %}
                             {{ post.descr | replace({('"'): "'"}) }}
                         {% else %}
                             {{ post.descrEng | replace({('"'): "'"}) }}
                         {% endif %}">
-        <img src="{{ post.photo }}" alt="" width="340px"/>
+        <img src="{{ post.photo }}" alt="" class="item_photo" width="340px"/>
     </a>
     <div class="blog_helper">
         {{ post.date |date('d') }}
