@@ -282,7 +282,7 @@ nav ul li a:hover{
     background-image: url("/images/shapka_en.png");
 }
 
-@media handheld and (min-device-width: 778px) and (max-device-width: 1024px) {
+@media only screen and (max-width: 770px)  {
 
     #wrapper #banner {
         height: 110px;
