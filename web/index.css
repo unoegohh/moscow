@@ -282,7 +282,7 @@ nav ul li a:hover{
     background-image: url("/images/shapka_en.png");
 }
 
-@media only screen and (max-width: 770px)  {
+@media only screen and (max-width: 768px)  {
 
     #wrapper #banner {
         height: 110px;
@@ -300,12 +300,12 @@ nav ul li a:hover{
         width: 342px;
     }
     header #social {
-        width: 140px;
+        width: 150px;
     }
 
     #container {
         padding: 0;
-        width: 768px;
+        width: 698px;
         margin: 0 35px;
     }
 
