@@ -283,8 +283,34 @@ nav ul li a:hover{
 }
 
 @media only screen and (max-width: 768px){
-    #wrapper  {
-        background: black;
+
+    #wrapper #banner {
+        height: 110px;
+        background: url("/images/768_header.png") center center no-repeat;
+    }
+    #wrapper {
+        width: 768px;
+
+    }
+    #container .item {
+        width: 342px;
+    }
+
+    #container .item img {
+        width: 342px;
+    }
+    header #social {
+        width: 140px;
+    }
+
+    #container {
+        padding: 0;
+        width: 768px;
+        margin: 0 35px;
+    }
+
+    #facebook {
+        display: none;
     }
 }
 @media only screen and (max-width: 640px){
