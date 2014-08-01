@@ -59,6 +59,25 @@
 
         if(mobile == true){
             $('.item_photo').unwrap();
+        }else{
+            $(window).scroll(function(){
+                var positionTop = $("nav").position().top;
+                if  ($(window).scrollTop() > positionTop){
+                    $("nav").addClass("visible");
+                }else{
+                    $("nav").removeClass("visible");
+                }
+            });
+            function isScrolledIntoView(elem)
+            {
+                var docViewTop = $(window).scrollTop();
+                var docViewBottom = docViewTop + $(window).height();
+
+                var elemTop = $(elem).offset().top;
+                var elemBottom = elemTop + $(elem).height();
+
+                return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
+            }
         }
     })
 </script>
