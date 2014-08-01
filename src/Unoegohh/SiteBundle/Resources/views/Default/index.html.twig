@@ -153,8 +153,10 @@
 
                                     }
                                     $container.append(ara);
-                                    $container.masonry('reloadItems');
-                                    $container.masonry('layout');
+                                    $container.imagesLoaded( function(){
+                                        $container.masonry('reloadItems');
+                                        $container.masonry('layout');
+                                    });
 //                                    $(data.items).each(function(){
 //                                        $(this).each(function(){
 //                                            console.log($(this));
