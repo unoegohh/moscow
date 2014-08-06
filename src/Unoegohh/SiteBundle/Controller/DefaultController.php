@@ -5,6 +5,8 @@ namespace Unoegohh\SiteBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 class DefaultController extends Controller
 {
@@ -43,12 +45,38 @@ class DefaultController extends Controller
         }
         return $this->render('UnoegohhSiteBundle:Default:about.html.twig', array('page' => $page, "_locale" =>$_locale ));
     }
+    public function archiveAction(Request $request, $_locale)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+        $repo = $em->getRepository("UnoegohhEntitiesBundle:Post");
+        $now =  new \DateTime('now');
+        $to = new \DateTime('now');
+        $from = $now->modify('-1 months');
+        if($request->query->get('from')){
+            $from = new \DateTime($request->query->get('from'));
+            $to = new \DateTime($request->query->get('to'));
+        }
+        $max = $repo->findOneBy(array(), array('date' => 'DESC'));
+        $min = $repo->findOneBy(array(), array('date' => 'ASC'));
+
+        $posts = $repo->getPostsBetweenDates($from,$to);
+        return $this->render('UnoegohhSiteBundle:Default:archive.html.twig', array(
+            'posts' => $posts,
+            "from" =>$from,
+            'to' => $to,
+            'min' => $min,
+            'max' => $max
+        ));
+    }
+
     public function pressAction($_locale)
     {
         $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository("UnoegohhEntitiesBundle:Press");
         return $this->render('UnoegohhSiteBundle:Default:press.html.twig', array('data' => $repo->findAll(), "_locale" =>$_locale ));
     }
+
     public function contactsAction($_locale)
     {
         return $this->render('UnoegohhSiteBundle:Default:contacts.html.twig', array( "_locale" =>$_locale ));

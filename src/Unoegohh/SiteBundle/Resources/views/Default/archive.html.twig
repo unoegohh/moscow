@@ -1,0 +1,72 @@
+{% set url="/archive" %}
+
+{% extends "UnoegohhSiteBundle:Default:index.html.twig" %}
+
+{% block styles %}
+    <link rel="stylesheet" href="/jquery-ui.min.css"/>
+    <link rel="stylesheet" href="/jquery-ui.theme.min.css"/>
+{% endblock %}
+
+{% block main %}
+    <script src="/jquery-ui.min.js"></script>
+
+    <form action="">
+        Показать записи с
+        <label for="from"></label>
+        <input type="text" id="from" name="from" value="{{ from | date("d.m.Y") }}">
+        <label for="to">to</label>
+        <input type="text" id="to" name="to" value="{{ to | date("d.m.Y") }}">
+        <input type="submit" value="Показать"/>
+    </form>
+    <script>
+        $(function() {
+            $( "#from" ).datepicker({
+                changeMonth: true,
+                dateFormat: "dd.mm.yy",
+                numberOfMonths: 1,
+                minDate: "{{ min.getDate() | date("d.m.Y") }}",
+                onClose: function( selectedDate ) {
+                    $( "#to" ).datepicker( "option", "minDate", selectedDate );
+                }
+            });
+            $( "#to" ).datepicker({
+                changeMonth: true,
+                numberOfMonths: 1,
+                dateFormat: "dd.mm.yy",
+                maxDate: "{{ max.getDate() | date("d.m.Y") }}",
+
+                onClose: function( selectedDate ) {
+                    $( "#from" ).datepicker( "option", "maxDate", selectedDate );
+                }
+            });
+        });
+    </script>
+
+    <div id="wrapper_for" style="margin: 30px 0 0 ">
+        {% if posts %}
+            {% for post in posts %}
+                {% include "UnoegohhSiteBundle:Default:postItem.html.twig" with {'post': post, '_locale' : _locale} %}
+            {% endfor %}
+        {% else %}
+            <p>Нет данных</p>
+        {% endif %}
+    </div>
+
+    <script>
+        $(function(){
+            var $container = $('#wrapper_for');
+
+            $container.imagesLoaded( function(){
+                $container.masonry({
+                    itemSelector : '.item',
+                    columnWidth: 340,
+                    "gutter": 18,
+                    transitionDuration: 0
+                    //"isFitWidth": true
+                });
+            });
+
+        });
+    </script>
+
+{% endblock %}

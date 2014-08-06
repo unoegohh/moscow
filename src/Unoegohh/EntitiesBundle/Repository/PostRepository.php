@@ -21,4 +21,19 @@ class PostRepository extends EntityRepository
         return $qb->getQuery()->getResult();
     }
 
+    public function getPostsBetweenDates( \DateTime $minDate,\DateTime  $maxDate)
+    {
+        $qb = $this->createQueryBuilder('u');
+        $qb
+            ->where($qb->expr()->lt('u.date' ,':maxDate'))
+            ->andWhere($qb->expr()->gt('u.date' ,':minDate'))
+            ->orderBy("u.date", "DESC")
+            ->setParameters(array(
+                'maxDate' =>  $maxDate->format("Y-m-d H:i:s"),
+                'minDate' =>  $minDate->format("Y-m-d H:i:s"),
+            ));
+
+        return $qb->getQuery()->getResult();
+    }
+
 }
