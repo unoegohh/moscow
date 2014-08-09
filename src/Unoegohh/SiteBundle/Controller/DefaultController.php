@@ -93,13 +93,15 @@ class DefaultController extends Controller
         $minDate->setTime(0, 0);
         $posts = $repo->getPostsBetweenDates($minDate,$maxDate);
         $result = array();
-        foreach($posts as $post){
-            if(!isset($result['posts'])){
-                $result = array();
-                $result['posts'] = array();
-                $result['date'] = $post->getDate();
+        if(count($posts) > 3){
+            foreach($posts as $post){
+                if(!isset($result['posts'])){
+                    $result = array();
+                    $result['posts'] = array();
+                    $result['date'] = $post->getDate();
+                }
+                $result['posts'][] =  $post;
             }
-            $result['posts'][] =  $post;
         }
         $result = $this->renderView("UnoegohhSiteBundle:Default:archiveMonth.html.twig", array('cat' => $result, '_locale' => $_locale));
 
