@@ -86,9 +86,9 @@ class DefaultController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository("UnoegohhEntitiesBundle:Post");
-        $maxDate = new \DateTime("@$id");
+        $maxDate = new \DateTime("@$id", new \DateTimeZone('Europe/Moscow'));
 
-        $minDate =  new \DateTime("@$id");
+        $minDate =  new \DateTime("@$id", new \DateTimeZone('Europe/Moscow'));
         $minDate = $minDate->modify('-1 months');
         $minDate->setTime(0, 0);
         $posts = $repo->getPostsBetweenDates($minDate,$maxDate);
