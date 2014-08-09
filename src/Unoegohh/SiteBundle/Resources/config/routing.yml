@@ -22,6 +22,12 @@ unoegohh_site_archive:
     requirements:
         _locale: ru|en
 
+unoegohh_site_archive_more:
+    path:     /{_locale}/getMoreArchive/{id}
+    defaults: { _controller: UnoegohhSiteBundle:Default:getMoreArchive , id:1 }
+    requirements:
+        _locale: ru|en
+
 unoegohh_site_get_more:
     path:     /{_locale}/getMore/{id}
     defaults: { _controller: UnoegohhSiteBundle:Default:getMore, id:1 }

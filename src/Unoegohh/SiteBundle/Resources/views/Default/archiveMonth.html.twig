@@ -1,0 +1,11 @@
+{% if cat.posts | length > 0 %}
+    <h1>
+        {{ ((cat.date |date('m')) ~ _locale ~ "m" )|trans({}, 'UnoegohhSiteBundle')|capitalize }}
+        {{ cat.date |date('Y') }}
+    </h1>
+    <div class="item_wrapper">
+        {% for post in cat.posts %}
+            {% include "UnoegohhSiteBundle:Default:postItem.html.twig" with {'post': post, '_locale' : _locale} %}
+        {% endfor %}
+    </div>
+{% endif %}

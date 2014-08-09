@@ -7,6 +7,7 @@ use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints\DateTime;
+use Unoegohh\EntitiesBundle\Entity\Post;
 
 class DefaultController extends Controller
 {
@@ -52,22 +53,57 @@ class DefaultController extends Controller
         $repo = $em->getRepository("UnoegohhEntitiesBundle:Post");
         $now =  new \DateTime('now');
         $to = new \DateTime('now');
-        $from = $now->modify('-1 months');
+        $now->modify("-1 month");
+        $from = new \DateTime($now->format('y-m' . '-01'));
+
+        $from->setTime(0, 0);
         if($request->query->get('from')){
             $from = new \DateTime($request->query->get('from'));
             $to = new \DateTime($request->query->get('to'));
         }
-        $max = $repo->findOneBy(array(), array('date' => 'DESC'));
-        $min = $repo->findOneBy(array(), array('date' => 'ASC'));
-
+        /* @var $post Post */
         $posts = $repo->getPostsBetweenDates($from,$to);
+        $result = array();
+        foreach($posts as $post){
+            $item = array();
+            $name = $post->getDate()->format("m");
+            if(!isset($result[$name])){
+                $result[$name] = array();
+                $result[$name]['posts'] = array();
+                $result[$name]['date'] = $post->getDate();
+            }
+            $result[$name]['posts'][] =  $post;
+            
+        }
+
         return $this->render('UnoegohhSiteBundle:Default:archive.html.twig', array(
-            'posts' => $posts,
-            "from" =>$from,
-            'to' => $to,
-            'min' => $min,
-            'max' => $max
+            'posts' => $result,
+            '_locale' => $_locale
         ));
+    }
+
+    public function getMoreArchiveAction($_locale,$id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $repo = $em->getRepository("UnoegohhEntitiesBundle:Post");
+        $maxDate = new \DateTime("@$id");
+
+        $minDate =  new \DateTime("@$id");
+        $minDate = $minDate->modify('-1 months');
+        $minDate->setTime(0, 0);
+        $posts = $repo->getPostsBetweenDates($minDate,$maxDate);
+        $result = array();
+        foreach($posts as $post){
+            if(!isset($result['posts'])){
+                $result = array();
+                $result['posts'] = array();
+                $result['date'] = $post->getDate();
+            }
+            $result['posts'][] =  $post;
+        }
+        $result = $this->renderView("UnoegohhSiteBundle:Default:archiveMonth.html.twig", array('cat' => $result, '_locale' => $_locale));
+
+        return new JsonResponse(array('result' => $result));
     }
 
     public function pressAction($_locale)

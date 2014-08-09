@@ -8,61 +8,83 @@
 {% endblock %}
 
 {% block main %}
-    <script src="/jquery-ui.min.js"></script>
 
-    <form action="">
-        Показать записи с
-        <label for="from"></label>
-        <input type="text" id="from" name="from" value="{{ from | date("d.m.Y") }}">
-        <label for="to">to</label>
-        <input type="text" id="to" name="to" value="{{ to | date("d.m.Y") }}">
-        <input type="submit" value="Показать"/>
-    </form>
-    <script>
-        $(function() {
-            $( "#from" ).datepicker({
-                changeMonth: true,
-                dateFormat: "dd.mm.yy",
-                numberOfMonths: 1,
-                minDate: "{{ min.getDate() | date("d.m.Y") }}",
-                onClose: function( selectedDate ) {
-                    $( "#to" ).datepicker( "option", "minDate", selectedDate );
-                }
-            });
-            $( "#to" ).datepicker({
-                changeMonth: true,
-                numberOfMonths: 1,
-                dateFormat: "dd.mm.yy",
-                maxDate: "{{ max.getDate() | date("d.m.Y") }}",
-
-                onClose: function( selectedDate ) {
-                    $( "#from" ).datepicker( "option", "maxDate", selectedDate );
-                }
-            });
-        });
-    </script>
-
-    <div id="wrapper_for" style="margin: 30px 0 0 ">
+    <div id="wrapper_for" class="archive_page" style="margin: 30px 0 0 ">
         {% if posts %}
-            {% for post in posts %}
-                {% include "UnoegohhSiteBundle:Default:postItem.html.twig" with {'post': post, '_locale' : _locale} %}
+            {% for cat in posts %}
+                {% include "UnoegohhSiteBundle:Default:archiveMonth.html.twig" with {'cat': cat, '_locale' : _locale} %}
+
+
             {% endfor %}
+
+            <script>
+                $(function(){
+                    var $container = $('.archive_page');
+
+                    var moreUrl ="{{ path('unoegohh_site_archive_more', {"_locale" : _locale}) }}";
+                    var done = true;
+                    window.onscroll = function(ev) {
+
+                        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight && done) {
+                            done = false;
+                            var lastId = $('#container .item:last').attr('data-id');
+                            console.log('last-id ' + lastId );
+                            $.post(moreUrl + '/' + lastId,function(data){
+                                if(data.result){
+
+                                    $container.append(data.result);
+
+                                    var $items = $('.item_wrapper');
+                                    $items.each(function(){
+                                        $(this).imagesLoaded( function(){
+                                            $items.masonry({
+                                                itemSelector : '.item',
+                                                columnWidth: 158,
+                                                "gutter": 18,
+                                                transitionDuration: 0
+                                                //"isFitWidth": true
+                                            });
+                                        });
+                                    });
+                                    done = true;
+
+                                }
+                            });
+                        }
+                    };
+                });
+            </script>
+
         {% else %}
             <p>Нет данных</p>
         {% endif %}
     </div>
 
+    <style>
+        #container .archive_page .item {
+            width: 158px
+        }
+        #container .archive_page .item img {
+            display: block;
+            width: 158px;
+        }
+        #container .archive_page .item .item_text{
+            display:none;
+        }
+    </style>
     <script>
         $(function(){
-            var $container = $('#wrapper_for');
+            var $container = $('.item_wrapper');
 
-            $container.imagesLoaded( function(){
-                $container.masonry({
-                    itemSelector : '.item',
-                    columnWidth: 340,
-                    "gutter": 18,
-                    transitionDuration: 0
-                    //"isFitWidth": true
+            $container.each(function(){
+                $(this).imagesLoaded( function(){
+                    $container.masonry({
+                        itemSelector : '.item',
+                        columnWidth: 158,
+                        "gutter": 18,
+                        transitionDuration: 0
+                        //"isFitWidth": true
+                    });
                 });
             });
 
