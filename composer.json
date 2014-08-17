@@ -26,7 +26,9 @@
         "doctrine/orm": "2.3.*@dev",
         "doctrine/doctrine-bundle": "1.2.*@dev",
         "tumblr/tumblr": "@dev",
-        "symfony/swiftmailer-bundle": "2.2.*@dev"
+        "symfony/swiftmailer-bundle": "2.2.*@dev",
+        "facebook/php-sdk-v4" : "4.0.*",
+        "bocharsky-bw/vkontakte-php-sdk": "~1.0"
     },
     "autoload": {
         "psr-0": {
