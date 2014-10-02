@@ -139,7 +139,7 @@
                         var moreUrl ="{{ path('unoegohh_site_get_more', {"_locale" : _locale}) }}";
                         var done = true;
                         window.onscroll = function(ev) {
-                            if($(window).scrollTop() + $(window).height() >= $(document).height()  && done){
+                            if($(window).scrollTop() + $(window).height() >= $(document).height()-10  && done){
                                 done = false;
                                 var lastId = $('#container .item:last').attr('data-id');
                                 console.log('last-id ' + lastId );
